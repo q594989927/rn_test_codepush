@@ -116,10 +116,34 @@ android {
             include "armeabi-v7a", "x86"
         }
     }
+
+    signingConfigs {
+        debug {
+            //MD5:  F4:04:B0:A2:68:C1:BF:21:51:7B:AF:99:2F:DA:F4:E3
+            //SHA1: B9:C2:FE:3F:B1:3B:C6:76:3F:65:56:8F:37:69:E6:DE:92:D5:61:87
+            //SHA256: E1:FE:BE:AC:A2:8B:47:D1:F7:47:26:56:A6:3F:4D:7E:FC:A3:59:85:D9:82:AF:DB:82:EE:F6:66:67:6B:38:10
+            keyAlias 'chunyi'
+            keyPassword '123456'
+            storeFile file('../keystores/chunyiabc.jks')
+            storePassword '123456'
+        }
+
+        release {
+            //MD5:  D5:5D:9A:47:88:69:19:24:72:E1:87:BE:39:D1:92:6C
+            //SHA1: 5A:A2:8A:BD:68:0C:FC:7F:BA:0B:43:4E:03:29:C3:58:E9:CB:7A:C3
+            //SHA256: DD:B2:CF:2E:BD:B0:21:98:8B:63:74:C1:27:73:4A:95:28:88:ED:1A:0F:37:53:3A:2A:59:F2:3A:71:A2:8D:0A
+            keyAlias 'androiddebugkey'
+            keyPassword 'android'
+            storeFile file('../keystores/debug.keystore')
+            storePassword 'android'
+        }
+    }
+
     buildTypes {
         release {
             minifyEnabled enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
+            signingConfig signingConfigs.release
         }
     }
     // applicationVariants are e.g. debug, release
